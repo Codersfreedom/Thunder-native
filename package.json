@@ -16,6 +16,9 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
+    "@gluestack-ui/button": "^1.0.8",
+    "@gluestack-ui/divider": "^0.1.10",
+    "@gluestack-ui/form-control": "^0.1.19",
     "@gluestack-ui/icon": "^0.1.25",
     "@gluestack-ui/nativewind-utils": "^1.0.26",
     "@gluestack-ui/overlay": "^0.1.16",
@@ -35,6 +38,7 @@
     "expo-symbols": "~0.2.1",
     "expo-system-ui": "~4.0.7",
     "expo-web-browser": "~14.0.2",
+    "lucide-react-native": "^0.473.0",
     "nativewind": "^4.1.23",
     "react": "18.3.1",
     "react-dom": "18.3.1",
