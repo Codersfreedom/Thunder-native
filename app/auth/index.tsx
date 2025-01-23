@@ -1,31 +1,23 @@
-import { View, Text, Image } from "react-native";
+import { View, Text } from "react-native";
 import React from "react";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { ThemedText } from "@/components/ThemedText";
+
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import { Divider } from "@/components/ui/divider";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { User } from "lucide-react-native";
+import { ThemedText } from "@/components/ThemedText";
+import { VStack } from "@/components/ui/vstack";
 
 const index = () => {
+  const router = useRouter();
   return (
-    <SafeAreaProvider>
-      <View className="flex flex-1 w-full justify-start items-center mt-28 ">
-        <View className="flex justify-center items-center">
-          <Image
-            source={require("../../assets/images/Thunder_logo.png")}
-            style={{
-              width: 70,
-              height: 70,
-            }}
-          />
-          <ThemedText className="text-2xl font-bold mt-4">
-            Let you in
-          </ThemedText>
-        </View>
+    <View className="p-10 flex flex-1 justify-between gap-5 max-w-md mx-auto">
+      <View>
+        <ThemedText type="title" className="text-center font-bold">
+          Let you in
+        </ThemedText>
       </View>
-
-      <View className="p-10 flex gap-5 max-w-md mx-auto">
+      <VStack space="xl">
         <Button
           variant="outline"
           className="p-4 rounded-3xl text-center font-semibold text-lg"
@@ -43,21 +35,26 @@ const index = () => {
         </View>
         {/* Sign in with password section */}
         <View>
-          <Button className="text-zinc-300 bg-green-500 p-4 rounded-3xl text-center font-semibold text-lg">
-            Sign in with password
+          <Button
+            onPress={() => router.navigate("/auth/Login")}
+            className=" bg-green-500 p-4 rounded-3xl text-center font-semibold text-lg"
+          >
+            <ButtonText className="text-gray-900">
+              Sign in with password
+            </ButtonText>
           </Button>
           <Text className="text-zinc-200 text-center mt-4">
             Don't have account?{" "}
             <Link
               className="text-green-500 font-semibold"
-              href={"/(tabs)/explore"}
+              href={"/auth/Signup"}
             >
               Singup
             </Link>{" "}
           </Text>
         </View>
-      </View>
-    </SafeAreaProvider>
+      </VStack>
+    </View>
   );
 };
 

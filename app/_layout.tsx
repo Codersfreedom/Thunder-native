@@ -34,12 +34,12 @@ export default function RootLayout() {
   }
 
   return (
-    <GluestackUIProvider mode="light">
+    <GluestackUIProvider mode={colorScheme === "light" ? "light" : "dark"}>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: true }} />
           <Stack.Screen
-            name="auth/index"
+            name="auth"
             options={{
               headerShown: true,
               headerTitle: "",
