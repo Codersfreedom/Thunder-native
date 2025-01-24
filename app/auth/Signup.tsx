@@ -35,9 +35,9 @@ const Signup = () => {
   };
   const router = useRouter();
   return (
-    <Center className="mt-10 ">
+    <Center className="mt-5 ">
       <Heading className=" text-2xl text-center">SignUp</Heading>
-      <FormControl className="p-4 mt-24">
+      <FormControl className="p-4 mt-10">
         <VStack space="4xl">
           <VStack space="xs">
             <Input className="min-w-[250px] group rounded-xl">
@@ -54,7 +54,7 @@ const Signup = () => {
                 as={User}
                 className="ml-2 group-focus-within:text-green-400"
               />
-              <InputField type="text" placeholder="Email" />
+              <InputField type="text" placeholder="Name" />
             </Input>
           </VStack>
           <VStack space="xs">

@@ -17,7 +17,7 @@ const index = () => {
           Let you in
         </ThemedText>
       </View>
-      <VStack space="xl">
+      <VStack space="xl" className="mt-48">
         <Button
           variant="outline"
           className="p-4 rounded-3xl text-center font-semibold text-lg"
