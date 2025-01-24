@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { LogoIcon } from "@/constants/Icons";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -37,7 +38,15 @@ export default function RootLayout() {
     <GluestackUIProvider mode={colorScheme === "light" ? "light" : "dark"}>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: true }} />
+          <Stack.Screen
+            name="(tabs)"
+            options={{
+              headerShown: true,
+              headerTitle: "",
+              headerTransparent: true,
+              headerLeft: () => <LogoIcon />,
+            }}
+          />
           <Stack.Screen
             name="auth"
             options={{
