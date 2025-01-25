@@ -4,7 +4,14 @@ import { HapticTab } from "@/components/HapticTab";
 import TabBarBackground from "@/components/ui/TabBarBackground";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { AlbumIcon, HomeIcon, PersonIcon, RoomsIcon } from "@/constants/Icons";
+import {
+  AlbumIcon,
+  HomeIcon,
+  LogoIcon,
+  PersonIcon,
+  RoomsIcon,
+} from "@/constants/Icons";
+import HeaderRight from "@/components/HeaderRight";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -12,7 +19,15 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        headerShown: false,
+        headerShown: true,
+        headerTransparent: true,
+        headerLeft: () => <LogoIcon />,
+        headerRight: () => <HeaderRight />,
+        headerStyle: {
+          backgroundColor:
+            Colors[colorScheme === "light" ? "light" : "dark"].background,
+          margin: 0,
+        },
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
         tabBarStyle: {
@@ -30,7 +45,7 @@ export default function TabLayout() {
           headerTitle: "Thunder",
           headerShown: true,
           headerTransparent: true,
-          headerTitleStyle: { marginLeft: 40 },
+          headerTitleStyle: { marginLeft: 10 },
         }}
       />
       <Tabs.Screen
@@ -41,7 +56,7 @@ export default function TabLayout() {
           headerTitle: "Albums",
           headerShown: true,
           headerTransparent: true,
-          headerTitleStyle: { marginLeft: 40 },
+          headerTitleStyle: { marginLeft: 10 },
         }}
       />
       <Tabs.Screen
@@ -52,7 +67,7 @@ export default function TabLayout() {
           headerTitle: "Rooms",
           headerShown: true,
           headerTransparent: true,
-          headerTitleStyle: { marginLeft: 40 },
+          headerTitleStyle: { marginLeft: 10 },
         }}
       />
       <Tabs.Screen
@@ -63,7 +78,7 @@ export default function TabLayout() {
           headerTitle: "Profile",
           headerShown: true,
           headerTransparent: true,
-          headerTitleStyle: { marginLeft: 40 },
+          headerTitleStyle: { marginLeft: 10 },
         }}
       />
     </Tabs>

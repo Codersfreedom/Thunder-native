@@ -7,7 +7,7 @@ import { ScrollView } from "react-native-gesture-handler";
 
 export default function HomeScreen() {
   return (
-    <ScrollView className="dark:bg-dark-background">
+    <ScrollView className="dark:bg-dark-background mt-16 ">
       {/* Recently played section */}
       <VStack space="md" className="mt-20 p-2">
         <ThemedText type="subtitle" className="px-3">

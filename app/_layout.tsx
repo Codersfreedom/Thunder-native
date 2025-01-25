@@ -14,6 +14,8 @@ import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { LogoIcon } from "@/constants/Icons";
+import HeaderRight from "@/components/HeaderRight";
+import { Colors } from "@/constants/Colors";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -41,10 +43,7 @@ export default function RootLayout() {
           <Stack.Screen
             name="(tabs)"
             options={{
-              headerShown: true,
-              headerTitle: "",
-              headerTransparent: true,
-              headerLeft: () => <LogoIcon />,
+              headerShown: false,
             }}
           />
           <Stack.Screen
