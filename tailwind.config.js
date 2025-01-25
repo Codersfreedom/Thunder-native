@@ -15,6 +15,7 @@ module.exports = {
     extend: {
       colors: {
         "dark-background": "#222831",
+        "hover-background": "rgb(229 231 235 / 0.1)",
         primary: {
           0: "rgb(var(--color-primary-0)/<alpha-value>)",
           50: "rgb(var(--color-primary-50)/<alpha-value>)",

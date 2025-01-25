@@ -26,7 +26,6 @@ export default function TabLayout() {
         headerStyle: {
           backgroundColor:
             Colors[colorScheme === "light" ? "light" : "dark"].background,
-          margin: 0,
         },
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
