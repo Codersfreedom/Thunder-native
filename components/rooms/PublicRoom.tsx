@@ -13,7 +13,7 @@ import { Button, ButtonText } from "@/components/ui/button";
 const PublicRoom = () => {
   return (
     <Card size="md" variant="outline" className="rounded-2xl mr-2  ">
-      <VStack space="xs" className="items-center !h-36">
+      <VStack space="xs" className="items-center !h-44 ">
         <Avatar size="md">
           <AvatarFallbackText>RM</AvatarFallbackText>
           <AvatarImage source={{ uri: "" }} />
