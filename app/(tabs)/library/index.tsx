@@ -7,10 +7,10 @@ import { ScrollView } from "react-native-gesture-handler";
 const index = () => {
   return (
     <ScrollView className="dark:bg-dark-background mt-16 ">
-      {/* Recently played section */}
+      {/* Favorites section */}
       <VStack space="md" className="mt-10 p-2">
         <ThemedText type="subtitle" className="px-3">
-          New albums
+          Favorites
         </ThemedText>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <AlbumCard />
@@ -18,10 +18,10 @@ const index = () => {
           <AlbumCard />
         </ScrollView>
       </VStack>
-      {/* Trending section */}
+      {/* Albums section */}
       <VStack space="md" className="mt-2 p-2">
         <ThemedText type="subtitle" className="px-3">
-          Most played
+          Saved albums
         </ThemedText>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <AlbumCard />
@@ -32,7 +32,7 @@ const index = () => {
       {/* Playlists section */}
       <VStack space="md" className="mt-2 p-2">
         <ThemedText type="subtitle" className="px-3">
-          Popular
+          Saved playlists
         </ThemedText>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <AlbumCard />

@@ -48,11 +48,11 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="albums/index"
+        name="library/index"
         options={{
-          title: "Albums",
+          title: "Library",
           tabBarIcon: ({ color }) => <AlbumIcon color={color} />,
-          headerTitle: "Albums",
+          headerTitle: "Library",
           headerShown: true,
           headerTransparent: true,
           headerTitleStyle: { marginLeft: 10 },
