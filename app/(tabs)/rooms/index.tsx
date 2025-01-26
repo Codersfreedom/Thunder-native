@@ -15,7 +15,7 @@ const index = () => {
       <ScrollView
         horizontal={true}
         showsVerticalScrollIndicator={false}
-        className=" px-3 "
+        className=" px-3 min-h-fit "
       >
         <PublicRoom />
         <PublicRoom />

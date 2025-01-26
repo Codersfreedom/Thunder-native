@@ -1,8 +1,8 @@
 import React from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import SearchResultCard from "@/components/search/SearchResultCard";
-import NotFound from "./NotFound";
-import DefaultScreen from "./DefaultScreen";
+import NotFound from "@/components/search/NotFound";
+import DefaultScreen from "@/components/search/DefaultScreen";
 
 const index = () => {
   return (
@@ -14,10 +14,10 @@ const index = () => {
       <SearchResultCard /> */}
 
       {/* Not found screen */}
-      <NotFound />
+      {/* <NotFound /> */}
 
       {/* Default screen */}
-      {/* <DefaultScreen /> */}
+      <DefaultScreen />
     </ScrollView>
   );
 };

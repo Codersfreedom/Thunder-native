@@ -15,7 +15,7 @@ const HeaderRight = () => {
       >
         <SearchIcon className="rounded-full hover:bg-hover-background p-1 h-8 w-12" />
       </Pressable>
-      <Pressable>
+      <Pressable onPress={() => router.navigate("../notification")}>
         <BellIcon className="rounded-full hover:bg-hover-background p-1 h-8 w-12" />
       </Pressable>
     </HStack>

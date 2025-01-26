@@ -68,6 +68,18 @@ export default function RootLayout() {
               headerRight: () => <SearchBar />,
             }}
           />
+          <Stack.Screen
+            name="notification/index"
+            options={{
+              headerShown: true,
+              headerTitle: "",
+              headerTransparent: true,
+              headerStyle: {
+                backgroundColor:
+                  Colors[colorScheme === "light" ? "light" : "dark"].background,
+              },
+            }}
+          />
           <Stack.Screen name="+not-found" />
         </Stack>
         <StatusBar style="auto" />
