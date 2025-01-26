@@ -16,6 +16,7 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import { LogoIcon } from "@/constants/Icons";
 import HeaderRight from "@/components/HeaderRight";
 import { Colors } from "@/constants/Colors";
+import SearchBar from "@/components/search/SearchBar";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -52,6 +53,19 @@ export default function RootLayout() {
               headerShown: true,
               headerTitle: "",
               headerTransparent: true,
+            }}
+          />
+          <Stack.Screen
+            name="search/index"
+            options={{
+              headerShown: true,
+              headerTitle: "",
+              headerTransparent: true,
+              headerStyle: {
+                backgroundColor:
+                  Colors[colorScheme === "light" ? "light" : "dark"].background,
+              },
+              headerRight: () => <SearchBar />,
             }}
           />
           <Stack.Screen name="+not-found" />

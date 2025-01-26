@@ -13,6 +13,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      dropShadow: {
+        glow: "0 0 10px rgba(16, 185, 129, 0.8)",
+      },
       colors: {
         "dark-background": "#222831",
         "hover-background": "rgb(229 231 235 / 0.1)",
