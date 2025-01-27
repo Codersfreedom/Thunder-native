@@ -2,15 +2,16 @@ import AlbumCard from "@/components/AlbumCard";
 import SongCard from "@/components/SongCard";
 import { ThemedText } from "@/components/ThemedText";
 import { VStack } from "@/components/ui/vstack";
-import { View } from "react-native";
+import { FlatList, ScrollView, View } from "react-native";
 
-import { ScrollView } from "react-native-gesture-handler";
+import songs from "../../assets/data/songs.json";
+import { Song } from "@/types";
 
 export default function HomeScreen() {
   return (
     <ScrollView className="dark:bg-dark-background mt-16 ">
       {/* Recently played section */}
-      <VStack space="md" className="mt-20 p-2">
+      <VStack space="md" className=" p-2">
         <View className="w-full flex flex-row justify-between pr-2">
           <ThemedText type="subtitle" className="px-3">
             Recently Played
@@ -23,10 +24,17 @@ export default function HomeScreen() {
           </ThemedText>
         </View>
 
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <SongCard />
-          <SongCard />
-          <SongCard />
+        <ScrollView>
+          {/* Song card component */}
+          {
+            <FlatList
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item: Song) => item._id.toString()}
+              data={songs}
+              renderItem={({ item: Song }) => <SongCard song={Song} />}
+            />
+          }
         </ScrollView>
       </VStack>
       {/* Trending section */}

@@ -1,0 +1,566 @@
+[
+  {
+    "_id": "6772bf2127b5c7ed8c7e6530",
+
+    "songId": "IlbqfHKT",
+    "title": "Phir Bhi Tumko Chaahunga",
+    "artists": {
+      "primary": [
+        {
+          "id": "702592",
+          "name": "Mithoon",
+          "role": "primary_artists",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Mithoon_002_20200908073735_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Mithoon_002_20200908073735_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Mithoon_002_20200908073735_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/mithoon-songs/nQKQiNRsTKs_"
+        },
+        {
+          "id": "459320",
+          "name": "Arijit Singh",
+          "role": "primary_artists",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Arijit_Singh_004_20241118063717_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Arijit_Singh_004_20241118063717_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Arijit_Singh_004_20241118063717_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/arijit-singh-songs/LlRWpHzy3Hk_"
+        },
+        {
+          "id": "697946",
+          "name": "Shashaa Tirupati",
+          "role": "primary_artists",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Shashaa_Tirupati_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Shashaa_Tirupati_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Shashaa_Tirupati_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/shashaa-tirupati-songs/,T0PZDWC4Xc_"
+        }
+      ],
+      "featured": [],
+      "all": [
+        {
+          "id": "702592",
+          "name": "Mithoon",
+          "role": "music",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Mithoon_002_20200908073735_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Mithoon_002_20200908073735_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Mithoon_002_20200908073735_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/mithoon-songs/nQKQiNRsTKs_"
+        },
+        {
+          "id": "702592",
+          "name": "Mithoon",
+          "role": "singer",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Mithoon_002_20200908073735_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Mithoon_002_20200908073735_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Mithoon_002_20200908073735_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/mithoon-songs/nQKQiNRsTKs_"
+        },
+        {
+          "id": "459320",
+          "name": "Arijit Singh",
+          "role": "singer",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Arijit_Singh_004_20241118063717_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Arijit_Singh_004_20241118063717_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Arijit_Singh_004_20241118063717_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/arijit-singh-songs/LlRWpHzy3Hk_"
+        },
+        {
+          "id": "697946",
+          "name": "Shashaa Tirupati",
+          "role": "singer",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Shashaa_Tirupati_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Shashaa_Tirupati_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Shashaa_Tirupati_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/shashaa-tirupati-songs/,T0PZDWC4Xc_"
+        },
+        {
+          "id": "473441",
+          "name": "Manoj Muntashir",
+          "role": "lyricist",
+          "image": [],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/manoj-muntashir-songs/eaiDjU0BhyA_"
+        },
+        {
+          "id": "473371",
+          "name": "Arjun Kapoor",
+          "role": "starring",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Arjun_Kapoor_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Arjun_Kapoor_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Arjun_Kapoor_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/arjun-kapoor-songs/xS,nRhjt3Tk_"
+        },
+        {
+          "id": "477854",
+          "name": "Shraddha Kapoor",
+          "role": "starring",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Shraddha_Kapoor_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Shraddha_Kapoor_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Shraddha_Kapoor_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/shraddha-kapoor-songs/97qRLkdq3gI_"
+        }
+      ]
+    },
+    "artistId": "702592",
+    "imageUrl": "https://c.saavncdn.com/441/Half-Girlfriend-Hindi-2017-20180622-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/441/5be788f75761b20e5dbcecdd3069a1c4_160.mp4",
+    "releaseYear": "2017",
+    "duration": 352,
+    "albumId": "10601320",
+    "createdAt": {
+      "$date": "2024-12-30T15:41:21.074Z"
+    },
+    "updatedAt": {
+      "$date": "2024-12-30T15:41:21.074Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": "6772bf2127b5c7ed8c7e6533",
+
+    "songId": "T0SWnQEs",
+    "title": "Dhokha",
+    "artists": {
+      "primary": [
+        {
+          "id": "459320",
+          "name": "Arijit Singh",
+          "role": "primary_artists",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Arijit_Singh_004_20241118063717_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Arijit_Singh_004_20241118063717_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Arijit_Singh_004_20241118063717_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/arijit-singh-songs/LlRWpHzy3Hk_"
+        },
+        {
+          "id": "746774",
+          "name": "Manan Bhardwaj",
+          "role": "primary_artists",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Manan_Bhardwaj_000_20220326130438_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Manan_Bhardwaj_000_20220326130438_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Manan_Bhardwaj_000_20220326130438_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/manan-bhardwaj-songs/PHyqUR9DoKY_"
+        }
+      ],
+      "featured": [],
+      "all": [
+        {
+          "id": "459320",
+          "name": "Arijit Singh",
+          "role": "singer",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Arijit_Singh_004_20241118063717_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Arijit_Singh_004_20241118063717_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Arijit_Singh_004_20241118063717_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/arijit-singh-songs/LlRWpHzy3Hk_"
+        },
+        {
+          "id": "746774",
+          "name": "Manan Bhardwaj",
+          "role": "singer",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Manan_Bhardwaj_000_20220326130438_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Manan_Bhardwaj_000_20220326130438_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Manan_Bhardwaj_000_20220326130438_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/manan-bhardwaj-songs/PHyqUR9DoKY_"
+        },
+        {
+          "id": "746774",
+          "name": "Manan Bhardwaj",
+          "role": "lyricist",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Manan_Bhardwaj_000_20220326130438_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Manan_Bhardwaj_000_20220326130438_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Manan_Bhardwaj_000_20220326130438_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/manan-bhardwaj-songs/PHyqUR9DoKY_"
+        }
+      ]
+    },
+    "artistId": "459320",
+    "imageUrl": "https://c.saavncdn.com/335/Dhokha-Hindi-2022-20220210031007-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/335/9f3e81c0418af0e5a1db7001f6f2305c_160.mp4",
+    "releaseYear": "2022",
+    "duration": 245,
+    "albumId": "32799778",
+    "createdAt": {
+      "$date": "2024-12-30T15:41:21.201Z"
+    },
+    "updatedAt": {
+      "$date": "2024-12-30T15:41:21.201Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": "6772bf2127b5c7ed8c7e653f",
+
+    "songId": "lteSMrqT",
+    "title": "Main Dhoondne Ko Zamaane Mein",
+    "artists": {
+      "primary": [
+        {
+          "id": "490085",
+          "name": "Gaurav Dagaonkar",
+          "role": "primary_artists",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Gaurav_Dagaonkar_20191216113105_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Gaurav_Dagaonkar_20191216113105_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Gaurav_Dagaonkar_20191216113105_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/gaurav-dagaonkar-songs/XPxdM,JR8tY_"
+        },
+        {
+          "id": "459320",
+          "name": "Arijit Singh",
+          "role": "primary_artists",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Arijit_Singh_004_20241118063717_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Arijit_Singh_004_20241118063717_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Arijit_Singh_004_20241118063717_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/arijit-singh-songs/LlRWpHzy3Hk_"
+        }
+      ],
+      "featured": [],
+      "all": [
+        {
+          "id": "490085",
+          "name": "Gaurav Dagaonkar",
+          "role": "music",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Gaurav_Dagaonkar_20191216113105_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Gaurav_Dagaonkar_20191216113105_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Gaurav_Dagaonkar_20191216113105_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/gaurav-dagaonkar-songs/XPxdM,JR8tY_"
+        },
+        {
+          "id": "459320",
+          "name": "Arijit Singh",
+          "role": "singer",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Arijit_Singh_004_20241118063717_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Arijit_Singh_004_20241118063717_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Arijit_Singh_004_20241118063717_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/arijit-singh-songs/LlRWpHzy3Hk_"
+        },
+        {
+          "id": "469700",
+          "name": "Arafat Mehmood",
+          "role": "lyricist",
+          "image": [],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/arafat-mehmood-songs/7JfoXUgI2OM_"
+        },
+        {
+          "id": "471684",
+          "name": "Adhyayan Suman",
+          "role": "starring",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/446/Soniyo-Version-2-0--Hindi-2019-20190430113919-50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/446/Soniyo-Version-2-0--Hindi-2019-20190430113919-150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/446/Soniyo-Version-2-0--Hindi-2019-20190430113919-500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/adhyayan-suman-songs/ngbwwd6Sekc_"
+        },
+        {
+          "id": "684210",
+          "name": "Arianaayam",
+          "role": "starring",
+          "image": [],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/arianaayam-songs/-nToxkJP6JA_"
+        },
+        {
+          "id": "455529",
+          "name": "Om Puri",
+          "role": "starring",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/artists/Om_Puri_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/artists/Om_Puri_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/artists/Om_Puri_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/om-puri-songs/Naa70mb2fgE_"
+        },
+        {
+          "id": "461019",
+          "name": "Deepti Naval",
+          "role": "starring",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/000/default_Saregama_50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/000/default_Saregama_150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/000/default_Saregama_500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/deepti-naval-songs/BtVBt-YTiJk_"
+        },
+        {
+          "id": "461079",
+          "name": "Shekhar Suman",
+          "role": "starring",
+          "image": [
+            {
+              "quality": "50x50",
+              "url": "https://c.saavncdn.com/728/Shukriya-2004-50x50.jpg"
+            },
+            {
+              "quality": "150x150",
+              "url": "https://c.saavncdn.com/728/Shukriya-2004-150x150.jpg"
+            },
+            {
+              "quality": "500x500",
+              "url": "https://c.saavncdn.com/728/Shukriya-2004-500x500.jpg"
+            }
+          ],
+          "type": "artist",
+          "url": "https://www.jiosaavn.com/artist/shekhar-suman-songs/PsCGUekUNCY_"
+        }
+      ]
+    },
+    "artistId": "490085",
+    "imageUrl": "https://c.saavncdn.com/112/Heartless-2014-500x500.jpg",
+    "audioUrl": "https://aac.saavncdn.com/112/7592616d8b2c04597c1ee01ec373a636_160.mp4",
+    "releaseYear": "2014",
+    "duration": 263,
+    "albumId": "1148662",
+    "createdAt": {
+      "$date": "2024-12-30T15:41:21.227Z"
+    },
+    "updatedAt": {
+      "$date": "2024-12-30T15:41:21.227Z"
+    },
+    "__v": 0
+  }
+]
