@@ -10,7 +10,7 @@ import {
   PaletteIcon,
 } from "lucide-react-native";
 import { ThemedText } from "@/components/ThemedText";
-import ThemeSheet from "@/components/rooms/ThemeSheet";
+import ThemeSheet from "@/components/profile/ThemeSheet";
 
 const index = () => {
   const [showActionsheet, setShowActionsheet] = React.useState(false);

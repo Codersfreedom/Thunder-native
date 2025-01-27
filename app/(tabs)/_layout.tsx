@@ -12,74 +12,85 @@ import {
   RoomsIcon,
 } from "@/constants/Icons";
 import HeaderRight from "@/components/HeaderRight";
+import FloatingPlayer from "@/components/songs/FloatingPlayer";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        headerShown: true,
-        headerTransparent: true,
-        headerLeft: () => <LogoIcon />,
-        headerRight: () => <HeaderRight />,
-        headerStyle: {
-          backgroundColor:
-            Colors[colorScheme === "light" ? "light" : "dark"].background,
-        },
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: {
-          backgroundColor:
-            Colors[colorScheme === "light" ? "light" : "dark"].background,
-          borderWidth: 0,
-        },
-      }}
-    >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: "Home",
-          tabBarIcon: ({ color }) => <HomeIcon color={color} />,
-          headerTitle: "Thunder",
+    <>
+      <Tabs
+        screenOptions={{
+          tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
           headerShown: true,
           headerTransparent: true,
-          headerTitleStyle: { marginLeft: 10 },
+          headerLeft: () => <LogoIcon />,
+          headerRight: () => <HeaderRight />,
+          headerStyle: {
+            backgroundColor:
+              Colors[colorScheme === "light" ? "light" : "dark"].background,
+          },
+          tabBarButton: HapticTab,
+          tabBarBackground: TabBarBackground,
+          tabBarStyle: {
+            backgroundColor:
+              Colors[colorScheme === "light" ? "light" : "dark"].background,
+            borderWidth: 0,
+          },
+        }}
+      >
+        <Tabs.Screen
+          name="index"
+          options={{
+            title: "Home",
+            tabBarIcon: ({ color }) => <HomeIcon color={color} />,
+            headerTitle: "Thunder",
+            headerShown: true,
+            headerTransparent: true,
+            headerTitleStyle: { marginLeft: 10 },
+          }}
+        />
+        <Tabs.Screen
+          name="library/index"
+          options={{
+            title: "Library",
+            tabBarIcon: ({ color }) => <AlbumIcon color={color} />,
+            headerTitle: "Library",
+            headerShown: true,
+            headerTransparent: true,
+            headerTitleStyle: { marginLeft: 10 },
+          }}
+        />
+        <Tabs.Screen
+          name="rooms/index"
+          options={{
+            title: "Rooms",
+            tabBarIcon: ({ color }) => <RoomsIcon color={color} />,
+            headerTitle: "Rooms",
+            headerShown: true,
+            headerTransparent: true,
+            headerTitleStyle: { marginLeft: 10 },
+          }}
+        />
+        <Tabs.Screen
+          name="profile/index"
+          options={{
+            title: "Profile",
+            tabBarIcon: ({ color }) => <PersonIcon color={color} />,
+            headerTitle: "Profile",
+            headerShown: true,
+            headerTransparent: true,
+            headerTitleStyle: { marginLeft: 10 },
+          }}
+        />
+      </Tabs>
+      <FloatingPlayer
+        style={{
+          position: "absolute",
+          left: 8,
+          right: 8,
+          bottom: 49,
         }}
       />
-      <Tabs.Screen
-        name="library/index"
-        options={{
-          title: "Library",
-          tabBarIcon: ({ color }) => <AlbumIcon color={color} />,
-          headerTitle: "Library",
-          headerShown: true,
-          headerTransparent: true,
-          headerTitleStyle: { marginLeft: 10 },
-        }}
-      />
-      <Tabs.Screen
-        name="rooms/index"
-        options={{
-          title: "Rooms",
-          tabBarIcon: ({ color }) => <RoomsIcon color={color} />,
-          headerTitle: "Rooms",
-          headerShown: true,
-          headerTransparent: true,
-          headerTitleStyle: { marginLeft: 10 },
-        }}
-      />
-      <Tabs.Screen
-        name="profile/index"
-        options={{
-          title: "Profile",
-          tabBarIcon: ({ color }) => <PersonIcon color={color} />,
-          headerTitle: "Profile",
-          headerShown: true,
-          headerTransparent: true,
-          headerTitleStyle: { marginLeft: 10 },
-        }}
-      />
-    </Tabs>
+    </>
   );
 }
