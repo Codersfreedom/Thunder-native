@@ -9,14 +9,14 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { LogoIcon } from "@/constants/Icons";
-import HeaderRight from "@/components/HeaderRight";
 import { Colors } from "@/constants/Colors";
 import SearchBar from "@/components/search/SearchBar";
+import { useSetupTrackPlayer } from "@/hooks/useSetupTrackPlayer";
+import { useLogTrackPlayerState } from "@/hooks/useLogTrackPlayerState";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -37,6 +37,15 @@ export default function RootLayout() {
     return null;
   }
 
+  const handleTrackPlayerLoaded = useCallback(() => {
+    SplashScreen.hideAsync();
+  }, []);
+
+  useSetupTrackPlayer({
+    onLoad: handleTrackPlayerLoaded,
+  });
+
+  useLogTrackPlayerState();
   return (
     <GluestackUIProvider mode={colorScheme === "light" ? "light" : "dark"}>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>

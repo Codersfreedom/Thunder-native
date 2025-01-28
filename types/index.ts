@@ -7,9 +7,9 @@ export interface Song {
   };
   // artistId: string;
   imageUrl: string;
-  // audioUrl: string;
+  audioUrl: string;
   // releaseYear: string;
-  // duration: number;
+  duration: number;
   // albumId: string;
 }
 

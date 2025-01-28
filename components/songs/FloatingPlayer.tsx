@@ -6,7 +6,7 @@ import { PlayPauseButton, SkipToNextButton } from "./PlayerControls";
 const FloatingPlayer = ({ style }: ViewProps) => {
   const activeTrack = useActiveTrack();
 
-  //   if (!activeTrack) return null;
+  if (!activeTrack) return null;
 
   return (
     <TouchableOpacity
