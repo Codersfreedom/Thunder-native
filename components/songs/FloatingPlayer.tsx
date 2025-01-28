@@ -1,9 +1,18 @@
-import { View, Text, TouchableOpacity, Image, ViewProps } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  Image,
+  ViewProps,
+  StyleSheet,
+} from "react-native";
 import React from "react";
 import { useActiveTrack } from "react-native-track-player";
 import { PlayPauseButton, SkipToNextButton } from "./PlayerControls";
+import { useRouter } from "expo-router";
+import { MovingText } from "./useMovingText";
 
 const FloatingPlayer = ({ style }: ViewProps) => {
+  const router = useRouter();
   const activeTrack = useActiveTrack();
 
   if (!activeTrack) return null;
@@ -29,12 +38,16 @@ const FloatingPlayer = ({ style }: ViewProps) => {
           className="w-10 h-10 rounded-xl"
         />
         <View className="flex-1 overflow-hidden ml-3">
-          <Text className="text-lg font-semibold pl-3 dark:text-zinc-200">
-            {activeTrack?.title}
-          </Text>
-          <Text className="text-base font-medium pl-3 dark:text-zinc-200">
-            {activeTrack?.artist}
-          </Text>
+          <MovingText
+            text={activeTrack?.title ?? ""}
+            animationThreshold={25}
+            style={styles.trackTitle}
+          />
+          <MovingText
+            text={activeTrack?.artist ?? ""}
+            animationThreshold={25}
+            style={styles.trackArtist}
+          />
         </View>
         <View className="flex flex-row items-center gap-5 mr-4 pl-4">
           <PlayPauseButton iconSize={24} />
@@ -46,3 +59,18 @@ const FloatingPlayer = ({ style }: ViewProps) => {
 };
 
 export default FloatingPlayer;
+
+const styles = StyleSheet.create({
+  trackTitle: {
+    fontSize: 20,
+    color: "#fff",
+    fontWeight: "600",
+    paddingLeft: 10,
+  },
+  trackArtist: {
+    fontSize: 16,
+    color: "#fff",
+    fontWeight: "500",
+    paddingLeft: 10,
+  },
+});

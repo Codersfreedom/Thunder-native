@@ -6,7 +6,7 @@ import TrackPlayer, {
   useActiveTrack,
   useIsPlaying,
 } from "react-native-track-player";
-import { LucidePause, Pause, PauseIcon, PlayIcon } from "lucide-react-native";
+import { PauseIcon, PlayIcon } from "lucide-react-native";
 
 const PlayButton = ({ song }: { song: Song }) => {
   const { playing } = useIsPlaying();
@@ -44,7 +44,7 @@ const PlayButton = ({ song }: { song: Song }) => {
           placement="bottom right"
           className="bg-green-500 hover:bg-green-700 active:bg-green-800"
         >
-          <FabIcon as={Pause} color="black" />
+          <FabIcon as={PauseIcon} color="black" />
         </Fab>
       ) : (
         <Fab
