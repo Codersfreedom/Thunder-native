@@ -12,6 +12,7 @@ import { useRouter } from "expo-router";
 import { MovingText } from "./useMovingText";
 
 const FloatingPlayer = ({ style }: ViewProps) => {
+  const unknownTrackImageUri = require("../../assets/images/unknown_track.png");
   const router = useRouter();
   const activeTrack = useActiveTrack();
 
@@ -19,6 +20,7 @@ const FloatingPlayer = ({ style }: ViewProps) => {
 
   return (
     <TouchableOpacity
+      onPress={() => router.navigate("/player")}
       activeOpacity={0.9}
       style={[
         {
@@ -34,10 +36,10 @@ const FloatingPlayer = ({ style }: ViewProps) => {
     >
       <>
         <Image
-          source={{ uri: activeTrack?.artwork }}
+          source={{ uri: activeTrack?.artwork ?? unknownTrackImageUri }}
           className="w-10 h-10 rounded-xl"
         />
-        <View className="flex-1 overflow-hidden ml-3">
+        <View className="flex-1 overflow-hidden ml-2">
           <MovingText
             text={activeTrack?.title ?? ""}
             animationThreshold={25}
@@ -71,6 +73,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#fff",
     fontWeight: "500",
-    paddingLeft: 10,
+    paddingLeft: 8,
   },
 });

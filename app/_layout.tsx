@@ -89,6 +89,19 @@ export default function RootLayout() {
               },
             }}
           />
+          <Stack.Screen
+            name="player"
+            options={{
+              headerShown: true,
+              headerTitle: "",
+              headerTransparent: true,
+              // headerStyle: {
+              //   backgroundColor:
+              //     Colors[colorScheme === "light" ? "light" : "dark"].background,
+              // },
+            }}
+          />
+
           <Stack.Screen name="+not-found" />
         </Stack>
         <StatusBar style="auto" />
