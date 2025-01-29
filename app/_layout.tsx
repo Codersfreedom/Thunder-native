@@ -17,6 +17,7 @@ import { Colors } from "@/constants/Colors";
 import SearchBar from "@/components/search/SearchBar";
 import { useSetupTrackPlayer } from "@/hooks/useSetupTrackPlayer";
 import { useLogTrackPlayerState } from "@/hooks/useLogTrackPlayerState";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -49,61 +50,63 @@ export default function RootLayout() {
   return (
     <GluestackUIProvider mode={colorScheme === "light" ? "light" : "dark"}>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen
-            name="(tabs)"
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="auth"
-            options={{
-              headerShown: true,
-              headerTitle: "",
-              headerTransparent: true,
-            }}
-          />
-          <Stack.Screen
-            name="search/index"
-            options={{
-              headerShown: true,
-              headerTitle: "",
-              headerTransparent: true,
-              headerStyle: {
-                backgroundColor:
-                  Colors[colorScheme === "light" ? "light" : "dark"].background,
-              },
-              headerRight: () => <SearchBar />,
-            }}
-          />
-          <Stack.Screen
-            name="notification/index"
-            options={{
-              headerShown: true,
-              headerTitle: "",
-              headerTransparent: true,
-              headerStyle: {
-                backgroundColor:
-                  Colors[colorScheme === "light" ? "light" : "dark"].background,
-              },
-            }}
-          />
-          <Stack.Screen
-            name="player"
-            options={{
-              headerShown: true,
-              headerTitle: "",
-              headerTransparent: true,
-              // headerStyle: {
-              //   backgroundColor:
-              //     Colors[colorScheme === "light" ? "light" : "dark"].background,
-              // },
-            }}
-          />
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <Stack>
+            <Stack.Screen
+              name="(tabs)"
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="auth"
+              options={{
+                headerShown: true,
+                headerTitle: "",
+                headerTransparent: true,
+              }}
+            />
+            <Stack.Screen
+              name="search/index"
+              options={{
+                headerShown: true,
+                headerTitle: "",
+                headerTransparent: true,
+                headerStyle: {
+                  backgroundColor:
+                    Colors[colorScheme === "light" ? "light" : "dark"]
+                      .background,
+                },
+                headerRight: () => <SearchBar />,
+              }}
+            />
+            <Stack.Screen
+              name="notification/index"
+              options={{
+                headerShown: true,
+                headerTitle: "",
+                headerTransparent: true,
+                headerStyle: {
+                  backgroundColor:
+                    Colors[colorScheme === "light" ? "light" : "dark"]
+                      .background,
+                },
+              }}
+            />
+            <Stack.Screen
+              name="player"
+              options={{
+                headerShown: false,
+                presentation: "card",
+                gestureEnabled: true,
+                gestureDirection: "vertical",
+                animationDuration: 400,
+              }}
+            />
 
-          <Stack.Screen name="+not-found" />
-        </Stack>
+            <Stack.Screen name="+not-found" />
+          </Stack>
+        </GestureHandlerRootView>
         <StatusBar style="auto" />
       </ThemeProvider>
     </GluestackUIProvider>

@@ -10,6 +10,7 @@ export const useTrackPlayerVolume = () => {
   }, []);
 
   const updateVolume = useCallback(async (newVolume: number) => {
+    console.log("new volume", newVolume);
     if (newVolume < 0 || newVolume > 1) return;
 
     setVolume(newVolume);

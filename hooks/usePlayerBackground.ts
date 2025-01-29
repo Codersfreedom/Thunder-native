@@ -1,13 +1,18 @@
 import { colors } from "@/constants/tokens";
 import { useEffect, useState } from "react";
 import { getColors } from "react-native-image-colors";
-import { IOSImageColors } from "react-native-image-colors/build/types";
+import {
+  AndroidImageColors,
+  IOSImageColors,
+  WebImageColors,
+} from "react-native-image-colors/build/types";
 
 export const usePlayerBackground = (imageUrl: string) => {
-  const [imageColors, setImageColors] = useState<IOSImageColors | null>(null);
+  const [imageColors, setImageColors] = useState<
+    AndroidImageColors | WebImageColors | IOSImageColors | null
+  >(null);
 
   useEffect(() => {
-    console.log(imageUrl);
     if (!imageUrl) {
       console.warn("Invalid imageUrl provided");
       return;
@@ -18,8 +23,12 @@ export const usePlayerBackground = (imageUrl: string) => {
       key: imageUrl,
     })
       .then((colors) => {
-        if (colors && colors.platform === "ios") {
+        if (colors && colors.platform === "android") {
+          setImageColors(colors as AndroidImageColors);
+        } else if (colors && colors.platform === "ios") {
           setImageColors(colors as IOSImageColors);
+        } else if (colors && colors.platform === "web") {
+          setImageColors(colors as WebImageColors);
         } else {
           console.warn("getColors did not return valid iOS colors");
         }
