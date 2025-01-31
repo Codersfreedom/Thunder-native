@@ -14,7 +14,7 @@ import TrackPlayer, {
 } from "react-native-track-player";
 import PlayButton from "./songs/PlayButton";
 
-const SongCard = ({ song }: { song: Song }) => {
+const SongCard = ({ song, isLoading }: { song: Song; isLoading: boolean }) => {
   const isPlaying = useIsPlaying();
 
   return (
