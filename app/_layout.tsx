@@ -18,6 +18,7 @@ import SearchBar from "@/components/search/SearchBar";
 import { useSetupTrackPlayer } from "@/hooks/useSetupTrackPlayer";
 import { useLogTrackPlayerState } from "@/hooks/useLogTrackPlayerState";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import HeaderRight from "@/components/HeaderRight";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -101,6 +102,15 @@ export default function RootLayout() {
                 gestureEnabled: true,
                 gestureDirection: "vertical",
                 animationDuration: 400,
+              }}
+            />
+            <Stack.Screen
+              name="album/[id]"
+              options={{
+                headerShown: true,
+                headerTitle: "",
+                headerTransparent: true,
+                headerRight: () => <HeaderRight />,
               }}
             />
 

@@ -14,7 +14,7 @@ type SectionGridProps = {
 const AlbumCard = ({ album, isLoading }: SectionGridProps) => {
   return (
     <Card size="sm" variant="ghost" className="p-2 rounded-lg !max-w-xs  m-0">
-      <Link href={`/`}>
+      <Link href={`../album/${album.albumId}`}>
         <View>
           <Image
             source={{
