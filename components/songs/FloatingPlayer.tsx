@@ -10,11 +10,17 @@ import { useActiveTrack } from "react-native-track-player";
 import { PlayPauseButton, SkipToNextButton } from "./PlayerControls";
 import { useRouter } from "expo-router";
 import { MovingText } from "./useMovingText";
+import { LinearGradient } from "expo-linear-gradient";
+import { usePlayerBackground } from "@/hooks/usePlayerBackground";
+import { getGradientColors } from "@/helpers/getGradientColors";
 
 const FloatingPlayer = ({ style }: ViewProps) => {
   const unknownTrackImageUri = require("../../assets/images/unknown_track.png");
-  const router = useRouter();
   const activeTrack = useActiveTrack();
+  const { imageColors } = usePlayerBackground(
+    activeTrack?.artwork ?? unknownTrackImageUri
+  );
+  const router = useRouter();
 
   if (!activeTrack) return null;
 
@@ -22,19 +28,19 @@ const FloatingPlayer = ({ style }: ViewProps) => {
     <TouchableOpacity
       onPress={() => router.navigate("/player")}
       activeOpacity={0.9}
-      style={[
-        {
+      style={[{}, style]}
+    >
+      <LinearGradient
+        style={{
+          flex: 1,
           flexDirection: "row",
           alignItems: "center",
-          backgroundColor: "#166534",
           padding: 8,
           borderRadius: 12,
           paddingVertical: 10,
-        },
-        style,
-      ]}
-    >
-      <>
+        }}
+        colors={getGradientColors(imageColors)}
+      >
         <Image
           source={{ uri: activeTrack?.artwork ?? unknownTrackImageUri }}
           className="w-10 h-10 rounded-xl"
@@ -55,7 +61,7 @@ const FloatingPlayer = ({ style }: ViewProps) => {
           <PlayPauseButton iconSize={24} />
           <SkipToNextButton iconSize={24} />
         </View>
-      </>
+      </LinearGradient>
     </TouchableOpacity>
   );
 };

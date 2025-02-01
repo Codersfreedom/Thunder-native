@@ -6,9 +6,9 @@ import {
   Pressable,
   FlatList,
 } from "react-native";
-import React, { useEffect } from "react";
-import { useLocalSearchParams, useNavigation } from "expo-router";
-import { useActiveTrack } from "react-native-track-player";
+import React, { useEffect, useRef } from "react";
+import { useLocalSearchParams } from "expo-router";
+import TrackPlayer from "react-native-track-player";
 import { usePlayerBackground } from "@/hooks/usePlayerBackground";
 import { ImageColorsResult } from "react-native-image-colors";
 import { colors, fontSize, screenPadding } from "@/constants/tokens";
@@ -22,12 +22,16 @@ import { ScrollView } from "react-native-gesture-handler";
 import AlbumItem from "@/components/album/AlbumItem";
 import { Skeleton, SkeletonText } from "@/components/ui/skeleton";
 import useMusicStore from "@/store/useMusicStore";
+import { useQueue } from "@/store/useQueue";
+import { Song } from "@/types";
+import { songToTrack } from "@/helpers/SongToTrack";
 
 const AlbumScreen = () => {
   const { id }: { id: string } = useLocalSearchParams();
 
   const unknownTrackImageUri = require("../../assets/images/unknown_track.png");
-  const activeTrack = useActiveTrack();
+
+  const queueOffset = useRef(0);
 
   const { bottom } = useSafeAreaInsets();
   const { isLoading, fetchAlbumById, currentAlbum } = useMusicStore();
@@ -82,10 +86,51 @@ const AlbumScreen = () => {
     currentAlbum?.imageUrl ?? unknownTrackImageUri
   );
 
-  //   console.log("Current album: ", currentAlbum);
+  const { activeQueueId, setActiveQueueId } = useQueue();
+
+  const handleTrackChange = async (selectedTrack: Song) => {
+    const trackToAdd = songToTrack(selectedTrack);
+    const trackIndex = currentAlbum!.songs.findIndex(
+      (albumTrack) => albumTrack.audioUrl == trackToAdd.url
+    );
+
+    if (trackIndex === -1) return;
+
+    const isChangingQueue = id !== activeQueueId;
+    console.log(isChangingQueue);
+    if (isChangingQueue) {
+      const beforeTracks = currentAlbum!.songs
+        .slice(0, trackIndex)
+        .map(songToTrack);
+      const afterTracks = currentAlbum!.songs
+        .slice(trackIndex + 1)
+        .map(songToTrack);
+
+      await TrackPlayer.reset();
+
+      // construct new queue
+      await TrackPlayer.add(trackToAdd);
+      await TrackPlayer.add(afterTracks);
+      await TrackPlayer.add(beforeTracks);
+
+      await TrackPlayer.play();
+
+      queueOffset.current = trackIndex;
+      setActiveQueueId(id);
+    } else {
+      const nextTrackIndex =
+        trackIndex - queueOffset.current < 0
+          ? currentAlbum!.songs.length + trackIndex - queueOffset.current
+          : trackIndex - queueOffset.current;
+
+      await TrackPlayer.skip(nextTrackIndex);
+      TrackPlayer.play();
+    }
+  };
+
   return (
     <LinearGradient style={{ flex: 1 }} colors={getGradientColors(imageColors)}>
-      <ScrollView style={styles.overlayContainer} className="mt-16">
+      <ScrollView style={styles.overlayContainer} className="my-16">
         <View
           style={{
             flex: 1,
@@ -155,13 +200,17 @@ const AlbumScreen = () => {
           </View>
         </View>
         {/* Song lists */}
-        <View className="mt-10">
+        <View className="mt-5">
           {
             <FlatList
               key={currentAlbum?._id}
               data={currentAlbum?.songs}
-              renderItem={({ item }) => (
-                <AlbumItem isLoading={isLoading} song={item} />
+              renderItem={({ item: song }) => (
+                <AlbumItem
+                  isLoading={isLoading}
+                  song={song}
+                  handleTrackChange={handleTrackChange}
+                />
               )}
             />
           }

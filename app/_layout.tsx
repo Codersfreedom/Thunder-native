@@ -2,11 +2,17 @@ import {
   DarkTheme,
   DefaultTheme,
   ThemeProvider,
+  useRoute,
 } from "@react-navigation/native";
 import "@/global.css";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import {
+  Stack,
+  useNavigation,
+  useRootNavigationState,
+  useRouter,
+} from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect } from "react";
@@ -19,12 +25,17 @@ import { useSetupTrackPlayer } from "@/hooks/useSetupTrackPlayer";
 import { useLogTrackPlayerState } from "@/hooks/useLogTrackPlayerState";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import HeaderRight from "@/components/HeaderRight";
+import FloatingPlayer from "@/components/songs/FloatingPlayer";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+  const router = useRootNavigationState();
+  const currentPath = router.routes[router.routes.length - 1].name;
+  const showFloatingPlayBackScreens = ["album/[id]", "playlist/[id]"];
+
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
@@ -48,6 +59,7 @@ export default function RootLayout() {
   });
 
   useLogTrackPlayerState();
+
   return (
     <GluestackUIProvider mode={colorScheme === "light" ? "light" : "dark"}>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
@@ -116,6 +128,18 @@ export default function RootLayout() {
 
             <Stack.Screen name="+not-found" />
           </Stack>
+          <FloatingPlayer
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              bottom: 0,
+              borderRadius: 0,
+              display: showFloatingPlayBackScreens.includes(currentPath)
+                ? "flex"
+                : "none",
+            }}
+          />
         </GestureHandlerRootView>
         <StatusBar style="auto" />
       </ThemeProvider>

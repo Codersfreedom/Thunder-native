@@ -26,7 +26,7 @@ export default function HomeScreen() {
       fetchFeaturedSongs();
     }
   }, [fetchMadeForYouAlbums, fetchTrendingSongs]);
-  console.log(trending);
+
   return (
     <ScrollView className="dark:bg-dark-background mt-16 ">
       {/* Recently played section */}

@@ -3,12 +3,25 @@ import React from "react";
 import { ThemedText } from "../ThemedText";
 import { EllipsisVerticalIcon } from "lucide-react-native";
 import { Skeleton, SkeletonText } from "../ui/skeleton";
-import { Song } from "@/types";
+import { Artist, Song } from "@/types";
 import { formatDuration } from "@/helpers";
 
-const AlbumItem = ({ isLoading, song }: { isLoading: boolean; song: Song }) => {
+const AlbumItem = ({
+  isLoading,
+  song,
+  handleTrackChange,
+}: {
+  isLoading: boolean;
+  song: Song;
+
+  handleTrackChange: (track: Song) => void;
+}) => {
+  console.log(song);
   return (
-    <TouchableOpacity className="flex flex-row gap-5 justify-between items-center p-2 rounded-xl  mb-1 ">
+    <TouchableOpacity
+      onPress={() => handleTrackChange(song)}
+      className="flex flex-row gap-5 justify-between items-center p-2 rounded-xl  mb-1 "
+    >
       <View>
         {isLoading ? (
           <Skeleton variant="rounded" className="w-12 h-10" />
@@ -41,11 +54,13 @@ const AlbumItem = ({ isLoading, song }: { isLoading: boolean; song: Song }) => {
           ) : (
             <>
               <ThemedText className="text-xs truncate">
-                {song.artists.primary.map((artist) => artist.name).join(", ")}
+                {song.artists.primary
+                  .map((artist: Artist) => artist.name)
+                  .join(", ")}
               </ThemedText>
               {"●"}
               <ThemedText className="text-xs">
-                {formatDuration(song.duration)}
+                {formatDuration(song.duration ?? 0)}
               </ThemedText>
             </>
           )}

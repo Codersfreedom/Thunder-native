@@ -1,3 +1,5 @@
+import { Track } from "react-native-track-player";
+
 export interface Song {
   _id: string;
   songId: string;

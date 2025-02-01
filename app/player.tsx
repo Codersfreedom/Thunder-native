@@ -5,21 +5,15 @@ import { PlayerVolumeBar } from "@/components/songs/PlayerVolumeBar";
 import { MovingText } from "@/components/songs/useMovingText";
 
 import { colors, fontSize, screenPadding } from "@/constants/tokens";
+import { getGradientColors } from "@/helpers/getGradientColors";
 import { usePlayerBackground } from "@/hooks/usePlayerBackground";
-// import { useTrackPlayerFavorite } from '@/hooks/useTrackPlayerFavorite'
+
 import { defaultStyles, utilsStyles } from "@/styles";
 import { FontAwesome } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import { useMemo } from "react";
-import {
-  ActivityIndicator,
-  Image,
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import { ImageColorsResult } from "react-native-image-colors";
+
+import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
+
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useActiveTrack } from "react-native-track-player";
 
@@ -41,44 +35,6 @@ const PlayerScreen = () => {
       </View>
     );
   }
-  const getGradientColors = (imageColors: ImageColorsResult | null) => {
-    if (!imageColors) {
-      // Default colors if imageColors is not available
-      return [
-        colors.maximumTrackTintColor,
-        colors.minimumTrackTintColor,
-        colors.background,
-      ] as const;
-    }
-
-    if (Platform.OS === "web" && "darkMuted" in imageColors) {
-      return [
-        imageColors.darkMuted ?? colors.maximumTrackTintColor,
-        imageColors.darkVibrant ?? colors.minimumTrackTintColor,
-        imageColors.lightMuted ?? colors.background,
-      ] as const;
-    }
-
-    if (Platform.OS === "android" && "vibrant" in imageColors) {
-      return [
-        imageColors.vibrant ?? colors.minimumTrackTintColor,
-        imageColors.muted ?? colors.maximumTrackTintColor,
-      ] as const;
-    }
-
-    if (Platform.OS === "ios" && "primary" in imageColors) {
-      return [
-        imageColors.primary ?? colors.minimumTrackTintColor,
-        imageColors.secondary ?? colors.maximumTrackTintColor,
-      ] as const;
-    }
-
-    return [
-      colors.maximumTrackTintColor,
-      colors.minimumTrackTintColor,
-      colors.background,
-    ] as const; // Fallback
-  };
 
   return (
     <LinearGradient style={{ flex: 1 }} colors={getGradientColors(imageColors)}>
