@@ -1,5 +1,5 @@
 import { axiosInstance } from "@/lib/axios";
-import { Playlist, Room, User } from "@/types";
+import { Playlist, Room, Song, User } from "@/types";
 
 import { create } from "zustand";
 
@@ -22,6 +22,7 @@ interface UserStore {
     artist: Array<any>,
     imageUrl: string
   ) => Promise<void>;
+  getFavoriteSongs: () => Promise<void>;
   addAlbumToPlaylist: (
     playlistId: string | null,
     playListName: string,
@@ -34,6 +35,7 @@ interface UserStore {
   publicRooms: Room[];
   currentUser: User | null;
   playlists: Playlist[];
+  favoriteSongs: Song[];
   currentPlaylist: Playlist | null;
   isLoading: boolean;
   playlistLoading: boolean;
@@ -47,6 +49,7 @@ const useUserStore = create<UserStore>((set, get) => ({
   rooms: [],
   publicRooms: [],
   playlists: [],
+  favoriteSongs: [],
   currentPlaylist: null,
   currentUser: null,
   fetchJoinedRooms: async () => {
@@ -78,6 +81,17 @@ const useUserStore = create<UserStore>((set, get) => ({
       console.log(error.response.data.messages);
     } finally {
       set({ fetchingPlaylist: false });
+    }
+  },
+  getFavoriteSongs: async () => {
+    try {
+      set({ playlistLoading: true });
+      const response = await axiosInstance.get("/user/getFavoriteSongs");
+      set({ favoriteSongs: response.data.songs[0].songs });
+    } catch (error: any) {
+      console.log(error.response.data.message);
+    } finally {
+      set({ playlistLoading: false });
     }
   },
   getCurrentUser: async () => {

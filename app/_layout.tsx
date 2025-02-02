@@ -2,17 +2,11 @@ import {
   DarkTheme,
   DefaultTheme,
   ThemeProvider,
-  useRoute,
 } from "@react-navigation/native";
 import "@/global.css";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import { useFonts } from "expo-font";
-import {
-  Stack,
-  useNavigation,
-  useRootNavigationState,
-  useRouter,
-} from "expo-router";
+import { Stack, useRootNavigationState } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect } from "react";
@@ -26,6 +20,7 @@ import { useLogTrackPlayerState } from "@/hooks/useLogTrackPlayerState";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import HeaderRight from "@/components/HeaderRight";
 import FloatingPlayer from "@/components/songs/FloatingPlayer";
+import useUserStore from "@/store/useUserStore";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -35,6 +30,8 @@ export default function RootLayout() {
   const router = useRootNavigationState();
   const currentPath = router.routes[router.routes.length - 1].name;
   const showFloatingPlayBackScreens = ["album/[id]", "playlist/[id]"];
+
+  const { getCurrentUser } = useUserStore();
 
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
@@ -59,6 +56,10 @@ export default function RootLayout() {
   });
 
   useLogTrackPlayerState();
+
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
 
   return (
     <GluestackUIProvider mode={colorScheme === "light" ? "light" : "dark"}>
@@ -118,6 +119,15 @@ export default function RootLayout() {
             />
             <Stack.Screen
               name="album/[id]"
+              options={{
+                headerShown: true,
+                headerTitle: "",
+                headerTransparent: true,
+                headerRight: () => <HeaderRight />,
+              }}
+            />
+            <Stack.Screen
+              name="playlist/[id]"
               options={{
                 headerShown: true,
                 headerTitle: "",

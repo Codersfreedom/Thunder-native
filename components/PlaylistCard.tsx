@@ -5,36 +5,40 @@ import { Heading } from "./ui/heading";
 import { VStack } from "./ui/vstack";
 import { ThemedText } from "./ThemedText";
 import { Link } from "expo-router";
-import { Album, Playlist } from "@/types";
+import { Playlist } from "@/types";
 
 type SectionGridProps = {
-  album: Album;
+  playlist: Playlist;
   isLoading: boolean;
 };
-const AlbumCard = ({ album, isLoading }: SectionGridProps) => {
+const PlaylistCard = ({ playlist, isLoading }: SectionGridProps) => {
   return (
     <Card size="sm" variant="ghost" className="p-2 rounded-lg !max-w-xs  m-0">
-      <Link href={`../album/${album.albumId}`}>
+      <Link
+        href={`../${playlist.albumId == null ? "playlist" : "album"}/${
+          playlist.albumId == null ? playlist.playlistId : playlist.albumId
+        }`}
+      >
         <View>
           <Image
             source={{
-              uri: `${album.imageUrl}`,
+              uri: `${playlist.imageUrl}`,
             }}
             className="mb-1  w-36  rounded-md aspect-[263/240]"
-            alt={album.title}
+            alt={playlist.playlistName}
           />
         </View>
 
         <VStack className="truncate w-32 ">
           <View className="w-32 h-14 truncate">
-            <Heading>{album.title}</Heading>
+            <Heading>{playlist.playlistName}</Heading>
           </View>
           <View className="w-full h-6">
             <ThemedText
               type="subtitle"
               className="text-sm font-normal mb-2 text-typography-700"
             >
-              {album.artists.primary.map((artist) => artist.name).join(", ")}
+              {playlist.artist.map((artist) => artist.name).join(", ")}
             </ThemedText>
           </View>
         </VStack>
@@ -43,4 +47,4 @@ const AlbumCard = ({ album, isLoading }: SectionGridProps) => {
   );
 };
 
-export default AlbumCard;
+export default PlaylistCard;

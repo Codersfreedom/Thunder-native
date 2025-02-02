@@ -15,9 +15,15 @@ import {
 import { Center } from "@/components/ui/center";
 import { Divider } from "@/components/ui/divider";
 import { useRouter } from "expo-router";
+import useAuthStore from "@/store/useAuthStore";
 
 const Login = () => {
   const [showPassword, setShowPassword] = React.useState(false);
+  const [email, setEmail] = React.useState<string>("");
+  const [password, setPassword] = React.useState<string>("");
+
+  const { login } = useAuthStore();
+
   const handleState = () => {
     setShowPassword((showState) => {
       return !showState;
@@ -37,7 +43,11 @@ const Login = () => {
                 as={Mail}
                 className="ml-2 group-focus-within:text-green-400"
               />
-              <InputField type="text" placeholder="Email" />
+              <InputField
+                type="text"
+                placeholder="Email"
+                onChange={(e: any) => setEmail(e.target.value)}
+              />
             </Input>
           </VStack>
           <VStack space="xs">
@@ -49,6 +59,7 @@ const Login = () => {
               <InputField
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
+                onChange={(e: any) => setPassword(e.target.value)}
               />
               <InputSlot className="pr-3" onPress={handleState}>
                 <InputIcon
@@ -58,7 +69,10 @@ const Login = () => {
               </InputSlot>
             </Input>
           </VStack>
-          <Button className="ml-auto w-full rounded-3xl bg-green-500 hover:!bg-green-800">
+          <Button
+            onPress={() => login({ email, password })}
+            className="ml-auto w-full rounded-3xl bg-green-500 hover:!bg-green-800"
+          >
             <ButtonText className="text-typography-0 ">Login</ButtonText>
           </Button>
           {/* Divider section */}

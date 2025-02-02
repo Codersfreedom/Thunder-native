@@ -1,10 +1,15 @@
 import { View, Image } from "react-native";
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Stack } from "expo-router";
+import { Redirect, Stack } from "expo-router";
 import { ScrollView } from "react-native-gesture-handler";
+import useUserStore from "@/store/useUserStore";
 
 const _layout = () => {
+  const { currentUser } = useUserStore();
+
+  if (currentUser) return <Redirect href={"/"} />;
+
   return (
     <SafeAreaProvider>
       <ScrollView className="dark:bg-dark-background">
