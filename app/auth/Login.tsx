@@ -27,7 +27,7 @@ const Login = () => {
   const router = useRouter();
 
   return (
-    <Center className="mt-10 ">
+    <Center className="mt-10">
       <Heading className=" text-2xl text-center">Login</Heading>
       <FormControl className="p-4 mt-24">
         <VStack space="4xl">

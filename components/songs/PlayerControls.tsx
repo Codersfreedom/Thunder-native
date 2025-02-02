@@ -1,6 +1,14 @@
-import { Pause, Play, SkipForwardIcon } from "lucide-react-native";
+import {
+  LoaderCircleIcon,
+  Pause,
+  Play,
+  SkipForwardIcon,
+} from "lucide-react-native";
 import { StyleSheet, TouchableOpacity, View, ViewStyle } from "react-native";
-import TrackPlayer, { useIsPlaying } from "react-native-track-player";
+import TrackPlayer, {
+  useIsPlaying,
+  usePlaybackState,
+} from "react-native-track-player";
 
 type PlayerControlsProps = {
   style?: ViewStyle;
@@ -27,6 +35,7 @@ export const PlayerControls = ({ style }: PlayerControlsProps) => {
 
 export const PlayPauseButton = ({ style, iconSize }: PlayerButtonProps) => {
   const { playing } = useIsPlaying();
+  const { state } = usePlaybackState();
 
   return (
     <View style={[{ height: iconSize }, style]}>
@@ -34,7 +43,13 @@ export const PlayPauseButton = ({ style, iconSize }: PlayerButtonProps) => {
         activeOpacity={0.85}
         onPress={playing ? TrackPlayer.pause : TrackPlayer.play}
       >
-        {playing ? <Pause size={iconSize} /> : <Play size={iconSize} />}
+        {state === "buffering" ? (
+          <LoaderCircleIcon size={iconSize} className="animate-spin" />
+        ) : playing ? (
+          <Pause size={iconSize} />
+        ) : (
+          <Play size={iconSize} />
+        )}
       </TouchableOpacity>
     </View>
   );

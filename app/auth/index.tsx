@@ -11,7 +11,7 @@ import { VStack } from "@/components/ui/vstack";
 const index = () => {
   const router = useRouter();
   return (
-    <View className="p-10 flex flex-1 justify-between gap-5 max-w-md mx-auto">
+    <View className="p-10 flex flex-1 justify-between gap-5 max-w-md mx-auto dark:bg-dark-background">
       <View>
         <ThemedText type="title" className="text-center font-bold">
           Let you in

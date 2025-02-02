@@ -7,8 +7,8 @@ import { ScrollView } from "react-native-gesture-handler";
 const _layout = () => {
   return (
     <SafeAreaProvider>
-      <ScrollView>
-        <View className="flex w-full justify-start items-center mt-20 ">
+      <ScrollView className="dark:bg-dark-background">
+        <View className="flex w-full justify-start items-center mt-20">
           <View className="flex justify-center items-center">
             <Image
               source={require("../../assets/images/Thunder_logo.png")}

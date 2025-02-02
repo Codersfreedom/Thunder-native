@@ -92,3 +92,62 @@ export interface SearchedSong {
     ];
   };
 }
+
+export interface Room {
+  _id: string;
+  roomId: string;
+  visability: string;
+  roomName: string;
+  image: string;
+  admin: string;
+  modarators: any[];
+  requests: Requests[];
+  participants: string[];
+  messages: Message[];
+}
+export interface Message {
+  _id: string;
+  senderId: User;
+  message: string;
+}
+
+export interface Playlist {
+  _id: string | any;
+
+  playlistId: string | null;
+  playlistName: string;
+  year: string | null;
+  description: string | null;
+  imageUrl: string;
+  artist: {
+    id: string;
+    artistId: string;
+    name: string;
+    role: string;
+    image: string;
+    type: string;
+  }[];
+  albumId: string | any;
+  songs: Song[] | any;
+}
+export interface User {
+  _id: string;
+  email: string;
+  gender: string;
+  name: string;
+  image: string;
+  rooms: Array<Room>;
+  role: string;
+  playlists: Array<Playlist>;
+  followers: Array<any>;
+  following: Array<any>;
+}
+
+export interface Requests {
+  user: {
+    userId: string;
+    userName: string;
+  };
+  status: string;
+  room: Room;
+}

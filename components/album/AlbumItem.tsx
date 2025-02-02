@@ -1,10 +1,15 @@
 import { View, Text, Pressable, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { ThemedText } from "../ThemedText";
-import { EllipsisVerticalIcon } from "lucide-react-native";
+import {
+  AudioLines,
+  EllipsisVerticalIcon,
+  PlayIcon,
+} from "lucide-react-native";
 import { Skeleton, SkeletonText } from "../ui/skeleton";
 import { Artist, Song } from "@/types";
 import { formatDuration } from "@/helpers";
+import { useActiveTrack, useIsPlaying } from "react-native-track-player";
 
 const AlbumItem = ({
   isLoading,
@@ -16,7 +21,8 @@ const AlbumItem = ({
 
   handleTrackChange: (track: Song) => void;
 }) => {
-  console.log(song);
+  const isActive = useActiveTrack()?.url == song.audioUrl;
+  const { playing } = useIsPlaying();
   return (
     <TouchableOpacity
       onPress={() => handleTrackChange(song)}
@@ -32,12 +38,24 @@ const AlbumItem = ({
             }}
             alt=""
             style={{
-              width: 50,
+              width: 56,
               height: 40,
               objectFit: "cover",
               borderRadius: 10,
             }}
           />
+        )}
+        {isActive && (
+          <View
+            className="absolute top-0 left-0 h-10 w-14 rounded-lg flex flex-row items-center justify-center 
+             bg-gray-600/80"
+          >
+            {playing ? (
+              <AudioLines size={25} className=" animate-pulse  " />
+            ) : (
+              <PlayIcon size={25} />
+            )}
+          </View>
         )}
       </View>
       <View className="flex flex-1 gap-1 ">

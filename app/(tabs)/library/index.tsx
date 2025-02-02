@@ -1,10 +1,14 @@
 import AlbumCard from "@/components/AlbumCard";
+import EmptyLibrary from "@/components/EmptyLibrary";
 import { ThemedText } from "@/components/ThemedText";
 import { VStack } from "@/components/ui/vstack";
+import useUserStore from "@/store/useUserStore";
 
 import { ScrollView } from "react-native-gesture-handler";
 
 const index = () => {
+  const { currentUser } = useUserStore();
+  if (!currentUser) return <EmptyLibrary />;
   return (
     <ScrollView className="dark:bg-dark-background mt-16 ">
       {/* Favorites section */}
@@ -12,10 +16,10 @@ const index = () => {
         <ThemedText type="subtitle" className="px-3">
           Favorites
         </ThemedText>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <ScrollView>
+          {/* <AlbumCard />
           <AlbumCard />
-          <AlbumCard />
-          <AlbumCard />
+          <AlbumCard /> */}
         </ScrollView>
       </VStack>
       {/* Albums section */}
@@ -24,9 +28,9 @@ const index = () => {
           Saved albums
         </ThemedText>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          {/* <AlbumCard />
           <AlbumCard />
-          <AlbumCard />
-          <AlbumCard />
+          <AlbumCard /> */}
         </ScrollView>
       </VStack>
       {/* Playlists section */}
@@ -35,9 +39,9 @@ const index = () => {
           Saved playlists
         </ThemedText>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          {/* <AlbumCard />
           <AlbumCard />
-          <AlbumCard />
-          <AlbumCard />
+          <AlbumCard /> */}
         </ScrollView>
       </VStack>
     </ScrollView>

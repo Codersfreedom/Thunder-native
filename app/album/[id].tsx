@@ -16,7 +16,12 @@ import { LinearGradient } from "expo-linear-gradient";
 import { defaultStyles } from "@/styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ThemedText } from "@/components/ThemedText";
-import { EllipsisVertical, HeartIcon, Shuffle } from "lucide-react-native";
+import {
+  EllipsisVertical,
+  HeartIcon,
+  PlayCircleIcon,
+  Shuffle,
+} from "lucide-react-native";
 
 import { ScrollView } from "react-native-gesture-handler";
 import AlbumItem from "@/components/album/AlbumItem";
@@ -97,7 +102,7 @@ const AlbumScreen = () => {
     if (trackIndex === -1) return;
 
     const isChangingQueue = id !== activeQueueId;
-    console.log(isChangingQueue);
+
     if (isChangingQueue) {
       const beforeTracks = currentAlbum!.songs
         .slice(0, trackIndex)
@@ -127,7 +132,20 @@ const AlbumScreen = () => {
       TrackPlayer.play();
     }
   };
-
+  const handlePlay = async () => {
+    const tracks = currentAlbum!.songs.map(songToTrack);
+    await TrackPlayer.reset();
+    await TrackPlayer.add(tracks);
+    await TrackPlayer.play();
+  };
+  const handleShufflePlay = async () => {
+    const shuffledTracks = [...currentAlbum!.songs.map(songToTrack)].sort(
+      () => Math.random() - 0.5
+    );
+    await TrackPlayer.reset();
+    await TrackPlayer.add(shuffledTracks);
+    await TrackPlayer.play();
+  };
   return (
     <LinearGradient style={{ flex: 1 }} colors={getGradientColors(imageColors)}>
       <ScrollView style={styles.overlayContainer} className="my-16">
@@ -186,11 +204,20 @@ const AlbumScreen = () => {
               </ThemedText>
             )}
             {/* 3dot menu */}
-            <View className="flex flex-row gap-3 items-center   w-fit">
+            <View className="flex flex-row gap-1 items-center   w-fit">
               <Pressable className="hover:bg-hover-background w-fit rounded-full p-2">
                 <HeartIcon size={18} />
               </Pressable>
-              <Pressable className="hover:bg-hover-background w-fit rounded-full p-2">
+              <Pressable
+                onPress={handlePlay}
+                className="hover:bg-hover-background w-fit rounded-full p-2"
+              >
+                <PlayCircleIcon size={18} />
+              </Pressable>
+              <Pressable
+                onPress={handleShufflePlay}
+                className="hover:bg-hover-background w-fit rounded-full p-2"
+              >
                 <Shuffle size={18} />
               </Pressable>
               <Pressable className="hover:bg-hover-background w-fit rounded-full p-2 ">
@@ -235,8 +262,8 @@ const styles = StyleSheet.create({
     shadowRadius: 11.0,
     flexDirection: "row",
     justifyContent: "center",
-    height: "75%",
-    width: "50%",
+    height: "90%",
+    width: "55%",
   },
   artworkImage: {
     width: "100%",
@@ -250,6 +277,18 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     gap: 10,
     lineHeight: 15,
+  },
+  trackPlayingIconIndicator: {
+    position: "absolute",
+    top: 18,
+    left: 16,
+    width: 16,
+    height: 16,
+  },
+  trackPausedIndicator: {
+    position: "absolute",
+    top: 14,
+    left: 14,
   },
   trackTitleText: {
     ...defaultStyles.text,

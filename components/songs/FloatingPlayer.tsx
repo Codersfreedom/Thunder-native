@@ -6,7 +6,11 @@ import {
   StyleSheet,
 } from "react-native";
 import React from "react";
-import { useActiveTrack } from "react-native-track-player";
+import {
+  useActiveTrack,
+  useIsPlaying,
+  usePlaybackState,
+} from "react-native-track-player";
 import { PlayPauseButton, SkipToNextButton } from "./PlayerControls";
 import { useRouter } from "expo-router";
 import { MovingText } from "./useMovingText";
@@ -21,7 +25,6 @@ const FloatingPlayer = ({ style }: ViewProps) => {
     activeTrack?.artwork ?? unknownTrackImageUri
   );
   const router = useRouter();
-
   if (!activeTrack) return null;
 
   return (
@@ -59,6 +62,7 @@ const FloatingPlayer = ({ style }: ViewProps) => {
         </View>
         <View className="flex flex-row items-center gap-5 mr-4 pl-4">
           <PlayPauseButton iconSize={24} />
+
           <SkipToNextButton iconSize={24} />
         </View>
       </LinearGradient>
