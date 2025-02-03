@@ -135,6 +135,7 @@ const useMusicStore = create<MusicStore>((set) => ({
   searchSong: async (query) => {
     set({ searchLoading: true });
     try {
+      console.log(query);
       const response = await axiosInstance.get(`/songs/searchSong/${query}`);
       if (response.data.status) {
         set({ searchedSongs: response.data.song });

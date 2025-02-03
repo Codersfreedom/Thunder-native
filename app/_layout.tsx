@@ -29,7 +29,11 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   const router = useRootNavigationState();
   const currentPath = router.routes[router.routes.length - 1].name;
-  const showFloatingPlayBackScreens = ["album/[id]", "playlist/[id]"];
+  const showFloatingPlayBackScreens = [
+    "album/[id]",
+    "playlist/[id]",
+    "song/[id]",
+  ];
 
   const { getCurrentUser } = useUserStore();
 
@@ -119,6 +123,15 @@ export default function RootLayout() {
             />
             <Stack.Screen
               name="album/[id]"
+              options={{
+                headerShown: true,
+                headerTitle: "",
+                headerTransparent: true,
+                headerRight: () => <HeaderRight />,
+              }}
+            />
+            <Stack.Screen
+              name="song/[id]"
               options={{
                 headerShown: true,
                 headerTitle: "",

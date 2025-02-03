@@ -1,17 +1,10 @@
-import {
-  View,
-  Platform,
-  StyleSheet,
-  Image,
-  Pressable,
-  FlatList,
-} from "react-native";
-import React, { useEffect, useRef } from "react";
+import { View, StyleSheet, Image, Pressable } from "react-native";
+
+import React, { useEffect } from "react";
 import { useLocalSearchParams } from "expo-router";
 import TrackPlayer from "react-native-track-player";
 import { usePlayerBackground } from "@/hooks/usePlayerBackground";
-import { ImageColorsResult } from "react-native-image-colors";
-import { colors, fontSize, screenPadding } from "@/constants/tokens";
+import { fontSize, screenPadding } from "@/constants/tokens";
 import { LinearGradient } from "expo-linear-gradient";
 import { defaultStyles } from "@/styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -20,134 +13,43 @@ import {
   EllipsisVertical,
   HeartIcon,
   PlayCircleIcon,
-  Shuffle,
 } from "lucide-react-native";
-
 import { ScrollView } from "react-native-gesture-handler";
-import AlbumItem from "@/components/album/AlbumItem";
+import { getGradientColors } from "@/helpers/getGradientColors";
+import useMusicStore from "@/store/useMusicStore";
 import { Skeleton, SkeletonText } from "@/components/ui/skeleton";
-import { useQueue } from "@/store/useQueue";
-import { Song } from "@/types";
+import AlbumItem from "@/components/album/AlbumItem";
 import { songToTrack } from "@/helpers/SongToTrack";
-import useUserStore from "@/store/useUserStore";
+import { Song } from "@/types";
 
-const PlaylistScreen = () => {
+const SongScreen = () => {
+  const { fetchSingle, isLoading, single } = useMusicStore();
+  const unknownTrackImageUri = require("../../assets/images/unknown_track.png");
+  const { bottom } = useSafeAreaInsets();
   const { id }: { id: string } = useLocalSearchParams();
 
-  const unknownTrackImageUri = require("../../assets/images/unknown_track.png");
-
-  const queueOffset = useRef(0);
-
-  const { bottom } = useSafeAreaInsets();
-  const {
-    playlistLoading: isLoading,
-    getPlaylistSongs,
-    currentPlaylist,
-  } = useUserStore();
-
-  const getGradientColors = (imageColors: ImageColorsResult | null) => {
-    if (!imageColors) {
-      // Default colors if imageColors is not available
-      return [
-        colors.maximumTrackTintColor,
-        colors.minimumTrackTintColor,
-        colors.background,
-      ] as const;
-    }
-
-    if (Platform.OS === "web" && "darkMuted" in imageColors) {
-      return [
-        imageColors.darkMuted ?? colors.maximumTrackTintColor,
-        imageColors.darkVibrant ?? colors.minimumTrackTintColor,
-        imageColors.lightMuted ?? colors.background,
-      ] as const;
-    }
-
-    if (Platform.OS === "android" && "vibrant" in imageColors) {
-      return [
-        imageColors.vibrant ?? colors.minimumTrackTintColor,
-        imageColors.muted ?? colors.maximumTrackTintColor,
-      ] as const;
-    }
-
-    if (Platform.OS === "ios" && "primary" in imageColors) {
-      return [
-        imageColors.primary ?? colors.minimumTrackTintColor,
-        imageColors.secondary ?? colors.maximumTrackTintColor,
-      ] as const;
-    }
-
-    return [
-      colors.maximumTrackTintColor,
-      colors.minimumTrackTintColor,
-      colors.background,
-    ] as const; // Fallback
-  };
-
   useEffect(() => {
-    if (id) {
-      useUserStore.setState({ currentPlaylist: null });
-      getPlaylistSongs(id);
-    }
-  }, [id, getPlaylistSongs]);
+    fetchSingle(id);
+  }, [id, fetchSingle]);
 
   const { imageColors } = usePlayerBackground(
-    currentPlaylist?.imageUrl ?? unknownTrackImageUri
+    single?.imageUrl ?? unknownTrackImageUri
   );
-
-  const { activeQueueId, setActiveQueueId } = useQueue();
-
   const handleTrackChange = async (selectedTrack: Song) => {
     const trackToAdd = songToTrack(selectedTrack);
-    const trackIndex = currentPlaylist!.songs.findIndex(
-      (playlistTrack: Song) => playlistTrack.audioUrl == trackToAdd.url
-    );
 
-    if (trackIndex === -1) return;
-
-    const isChangingQueue = id !== activeQueueId;
-
-    if (isChangingQueue) {
-      const beforeTracks = currentPlaylist!.songs
-        .slice(0, trackIndex)
-        .map(songToTrack);
-      const afterTracks = currentPlaylist!.songs
-        .slice(trackIndex + 1)
-        .map(songToTrack);
-
-      await TrackPlayer.reset();
-
-      // construct new queue
-      await TrackPlayer.add(trackToAdd);
-      await TrackPlayer.add(afterTracks);
-      await TrackPlayer.add(beforeTracks);
-
-      await TrackPlayer.play();
-
-      queueOffset.current = trackIndex;
-      setActiveQueueId(id);
-    } else {
-      const nextTrackIndex =
-        trackIndex - queueOffset.current < 0
-          ? currentPlaylist!.songs.length + trackIndex - queueOffset.current
-          : trackIndex - queueOffset.current;
-
-      await TrackPlayer.skip(nextTrackIndex);
-      TrackPlayer.play();
-    }
-  };
-  const handlePlay = async () => {
-    const tracks = currentPlaylist!.songs.map(songToTrack);
     await TrackPlayer.reset();
-    await TrackPlayer.add(tracks);
+
+    // construct new queue
+    await TrackPlayer.add(trackToAdd);
+
     await TrackPlayer.play();
   };
-  const handleShufflePlay = async () => {
-    const shuffledTracks = [...currentPlaylist!.songs.map(songToTrack)].sort(
-      () => Math.random() - 0.5
-    );
+  const handlePlay = async () => {
+    if (!single) return;
+    const tracks = songToTrack(single);
     await TrackPlayer.reset();
-    await TrackPlayer.add(shuffledTracks);
+    await TrackPlayer.add(tracks);
     await TrackPlayer.play();
   };
   return (
@@ -170,7 +72,7 @@ const PlaylistScreen = () => {
             ) : (
               <Image
                 source={{
-                  uri: currentPlaylist?.imageUrl ?? unknownTrackImageUri,
+                  uri: single?.imageUrl ?? unknownTrackImageUri,
                 }}
                 resizeMode="cover"
                 style={styles.artworkImage}
@@ -183,7 +85,7 @@ const PlaylistScreen = () => {
               <SkeletonText _lines={1} className="w-20 h-4" />
             ) : (
               <ThemedText style={styles.trackTitleText}>
-                {currentPlaylist?.playlistName ?? "Test title"}
+                {single?.title ?? "Test title"}
               </ThemedText>
             )}
             {/* Track artists */}
@@ -194,18 +96,16 @@ const PlaylistScreen = () => {
                 style={styles.trackArtistText}
                 className="w-full max-h-12 truncate  "
               >
-                {currentPlaylist?.artist
+                {single?.artists.primary
                   .map((artist) => artist.name)
                   .join(", ") ?? "Test title"}
               </ThemedText>
             )}
-            {/* Songs count */}
+            {/* Release year */}
             {isLoading ? (
               <SkeletonText className="w-12 h-4" />
             ) : (
-              <ThemedText type="default">
-                {currentPlaylist?.songs.length ?? "50"} {"Songs"}
-              </ThemedText>
+              <ThemedText type="default">{single?.releaseYear}</ThemedText>
             )}
             {/* 3dot menu */}
             <View className="flex flex-row gap-1 items-center   w-fit">
@@ -218,12 +118,7 @@ const PlaylistScreen = () => {
               >
                 <PlayCircleIcon size={18} />
               </Pressable>
-              <Pressable
-                onPress={handleShufflePlay}
-                className="hover:bg-hover-background w-fit rounded-full p-2"
-              >
-                <Shuffle size={18} />
-              </Pressable>
+
               <Pressable className="hover:bg-hover-background w-fit rounded-full p-2 ">
                 <EllipsisVertical size={18} />
               </Pressable>
@@ -232,19 +127,13 @@ const PlaylistScreen = () => {
         </View>
         {/* Song lists */}
         <View className="mt-5">
-          {
-            <FlatList
-              key={currentPlaylist?._id}
-              data={currentPlaylist?.songs}
-              renderItem={({ item: song }) => (
-                <AlbumItem
-                  isLoading={isLoading}
-                  song={song}
-                  handleTrackChange={handleTrackChange}
-                />
-              )}
+          {single && (
+            <AlbumItem
+              isLoading={isLoading}
+              song={single}
+              handleTrackChange={handleTrackChange}
             />
-          }
+          )}
         </View>
       </ScrollView>
     </LinearGradient>
@@ -306,4 +195,4 @@ const styles = StyleSheet.create({
     maxWidth: "90%",
   },
 });
-export default PlaylistScreen;
+export default SongScreen;

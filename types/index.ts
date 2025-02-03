@@ -1,5 +1,3 @@
-import { Track } from "react-native-track-player";
-
 export interface Song {
   _id: string;
   songId: string;
@@ -93,6 +91,38 @@ export interface SearchedSong {
   };
 }
 
+export interface TopResult {
+  id: string;
+  title: string;
+  image: [{ quality: string; url: string }];
+  type: string;
+}
+
+export interface SongResult {
+  id: string;
+  title: string;
+  singers: string;
+  image: [{ quality: string; url: string }];
+}
+export interface AlbumResult {
+  id: string;
+  title: string;
+  image: [{ quality: string; url: string }];
+  artist: string;
+}
+export interface PlaylistResult {
+  id: string;
+  title: string;
+  type: string;
+  image: [{ quality: string; url: string }];
+}
+export interface ArtistResult {
+  id: string;
+  title: string;
+  image: [{ quality: string; url: string }];
+  type: string;
+  description: string;
+}
 export interface Room {
   _id: string;
   roomId: string;
