@@ -30,9 +30,11 @@ import useMusicStore from "@/store/useMusicStore";
 import { useQueue } from "@/store/useQueue";
 import { Song } from "@/types";
 import { songToTrack } from "@/helpers/SongToTrack";
+import useUserStore from "@/store/useUserStore";
 
 const AlbumScreen = () => {
   const { id }: { id: string } = useLocalSearchParams();
+  const { addAlbumToPlaylist, playlists } = useUserStore();
 
   const unknownTrackImageUri = require("../../assets/images/unknown_track.png");
 
@@ -146,6 +148,28 @@ const AlbumScreen = () => {
     await TrackPlayer.add(shuffledTracks);
     await TrackPlayer.play();
   };
+
+  const isAddedToPlaylist = playlists.find(
+    (playlist) => playlist.albumId === currentAlbum?.albumId
+  );
+
+  const handleAddAlbumToPlaylist = () => {
+    if (currentAlbum) {
+      const songs: string[] = [];
+      currentAlbum.songs.map((song) => {
+        songs.push(song._id);
+      });
+      addAlbumToPlaylist(
+        null,
+        currentAlbum.title,
+        currentAlbum.artists.primary,
+        currentAlbum.albumId,
+        currentAlbum.imageUrl,
+        songs
+      );
+    }
+  };
+
   return (
     <LinearGradient style={{ flex: 1 }} colors={getGradientColors(imageColors)}>
       <ScrollView style={styles.overlayContainer} className="my-16">
@@ -205,8 +229,15 @@ const AlbumScreen = () => {
             )}
             {/* 3dot menu */}
             <View className="flex flex-row gap-1 items-center   w-fit">
-              <Pressable className="hover:bg-hover-background w-fit rounded-full p-2">
-                <HeartIcon size={18} />
+              <Pressable
+                onPress={handleAddAlbumToPlaylist}
+                className="hover:bg-hover-background w-fit rounded-full p-2"
+              >
+                <HeartIcon
+                  size={18}
+                  fill={isAddedToPlaylist ? "green" : ""}
+                  color={isAddedToPlaylist ? "green" : "white"}
+                />
               </Pressable>
               <Pressable
                 onPress={handlePlay}

@@ -11,7 +11,14 @@ interface UserStore {
   addToFavorite: (
     artist: Array<any>,
     imageUrl: string,
+    audioUrl: string,
+    albumId: string,
+    artistId: string,
+    duration: number,
+    releaseYear: string,
     songId: string,
+    id: string,
+    title: string,
     playlistName: string
   ) => Promise<void>;
   getPlaylistSongs: (id: string) => Promise<void>;
@@ -108,7 +115,14 @@ const useUserStore = create<UserStore>((set, get) => ({
   addToFavorite: async (
     artist: Array<any>,
     imageUrl: string,
+    audioUrl: string,
+    albumId: string,
+    artistId: string,
+    duration: number,
+    releaseYear: string,
     songId: string,
+    id: string,
+    title: string,
     playListName: string
   ) => {
     if (!get().currentUser) return;
@@ -121,25 +135,20 @@ const useUserStore = create<UserStore>((set, get) => ({
       });
 
       if (response.data.status) {
-        set((state) => {
-          const existingFavorites = state.playlists.find(
-            (playlist) => playlist.playlistName === "Favorites"
-          );
-
-          if (existingFavorites) {
-            // Update the existing 'Favorites' playlist
-            return {
-              playlists: state.playlists.map((playlist) =>
-                playlist.playlistName === "Favorites"
-                  ? { ...playlist, songs: [...playlist.songs, songId] }
-                  : playlist
-              ),
-            };
-          } else {
-            return {
-              playlists: [...state.playlists, response.data.playlist],
-            };
-          }
+        const newSong: Song = {
+          _id: songId,
+          songId: id,
+          imageUrl,
+          audioUrl,
+          title,
+          albumId,
+          artistId,
+          artists: { primary: artist },
+          duration,
+          releaseYear,
+        };
+        set({
+          favoriteSongs: [...get().favoriteSongs, newSong],
         });
 
         // toast.success(response.data.message);

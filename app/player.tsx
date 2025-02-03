@@ -7,6 +7,7 @@ import { MovingText } from "@/components/songs/useMovingText";
 import { colors, fontSize, screenPadding } from "@/constants/tokens";
 import { getGradientColors } from "@/helpers/getGradientColors";
 import { usePlayerBackground } from "@/hooks/usePlayerBackground";
+import useUserStore from "@/store/useUserStore";
 
 import { defaultStyles, utilsStyles } from "@/styles";
 import { FontAwesome } from "@expo/vector-icons";
@@ -18,6 +19,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useActiveTrack } from "react-native-track-player";
 
 const PlayerScreen = () => {
+  const { addToFavorite, favoriteSongs } = useUserStore();
   const unknownTrackImageUri = require("../assets/images/unknown_track.png");
   const activeTrack = useActiveTrack();
   const { imageColors } = usePlayerBackground(
@@ -27,7 +29,31 @@ const PlayerScreen = () => {
   const { top, bottom } = useSafeAreaInsets();
 
   // const { isFavorite, toggleFavorite } = useTrackPlayerFavorite()
-  const isFavorite = true;
+  const handleAddToFavorite = () => {
+    if (!activeTrack) return;
+    addToFavorite(
+      [""],
+      activeTrack.artwork ?? "",
+      activeTrack.url,
+      activeTrack.album ?? "",
+      activeTrack.artist ?? "",
+      activeTrack.duration ?? 0,
+      activeTrack.date ?? "",
+      activeTrack.id,
+      activeTrack.songId,
+      activeTrack.title ?? "",
+      "Favorites"
+    );
+  };
+
+  let isFavorite: boolean = false;
+
+  favoriteSongs.map((song) => {
+    if (song?.songId == activeTrack?.songId) {
+      isFavorite = true;
+    }
+  });
+  console.log(isFavorite);
   if (!activeTrack) {
     return (
       <View style={[defaultStyles.container, { justifyContent: "center" }]}>
@@ -77,7 +103,7 @@ const PlayerScreen = () => {
                     size={20}
                     color={isFavorite ? colors.primary : colors.icon}
                     style={{ marginHorizontal: 14 }}
-                    // onPress={toggleFavorite}
+                    onPress={handleAddToFavorite}
                   />
                 </View>
 

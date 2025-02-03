@@ -1,4 +1,3 @@
-import AlbumCard from "@/components/AlbumCard";
 import EmptyLibrary from "@/components/EmptyLibrary";
 import PlaylistCard from "@/components/PlaylistCard";
 import SongCard from "@/components/SongCard";
@@ -19,16 +18,16 @@ const index = () => {
     favoriteSongs,
     getFavoriteSongs,
     playlists,
-    getPlaylistSongs,
     fetchingPlaylist,
   } = useUserStore();
 
   useEffect(() => {
-    if (currentUser) {
+    if (currentUser && !isLoading) {
       fetchPlaylists();
       getFavoriteSongs();
     }
   }, []);
+
   if (isLoading)
     return (
       <View className="flex flex-1 justify-center items-center dark:bg-dark-background">
@@ -36,8 +35,6 @@ const index = () => {
       </View>
     );
 
-  console.log("playlists: ", playlists);
-  console.log("favorite", favoriteSongs);
   if (!currentUser) return <EmptyLibrary />;
   return (
     <ScrollView className="dark:bg-dark-background mt-7">

@@ -7,6 +7,7 @@ import TrackPlayer, {
   useIsPlaying,
 } from "react-native-track-player";
 import { PauseIcon, PlayIcon } from "lucide-react-native";
+import useMusicStore from "@/store/useMusicStore";
 
 const PlayButton = ({ song }: { song: Song }) => {
   const { playing } = useIsPlaying();
@@ -21,7 +22,12 @@ const PlayButton = ({ song }: { song: Song }) => {
     }
     const track: Track = {
       id: song._id,
+      songId: song.songId,
       url: song.audioUrl,
+      duration: song.duration,
+      date: song.releaseYear,
+      album: song.albumId,
+
       title: song.title,
       artist: song.artists.primary.map((artist) => artist.name).join(", "),
       artwork: song.imageUrl,

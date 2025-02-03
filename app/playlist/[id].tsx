@@ -43,6 +43,8 @@ const PlaylistScreen = () => {
     playlistLoading: isLoading,
     getPlaylistSongs,
     currentPlaylist,
+    addAlbumToPlaylist,
+    playlists,
   } = useUserStore();
 
   const getGradientColors = (imageColors: ImageColorsResult | null) => {
@@ -150,6 +152,27 @@ const PlaylistScreen = () => {
     await TrackPlayer.add(shuffledTracks);
     await TrackPlayer.play();
   };
+
+  const handleAddAlbumToPlaylist = () => {
+    if (currentPlaylist) {
+      const songs: string[] = [];
+      currentPlaylist.songs.map((song: { _id: string }) => {
+        songs.push(song._id);
+      });
+      addAlbumToPlaylist(
+        currentPlaylist.playlistId,
+        currentPlaylist.playlistName,
+        currentPlaylist.artist,
+        currentPlaylist.albumId,
+        currentPlaylist.imageUrl,
+        songs
+      );
+    }
+  };
+
+  const isAddedToPlaylist = playlists.find(
+    (playlist) => playlist.playlistId === currentPlaylist?.playlistId
+  );
   return (
     <LinearGradient style={{ flex: 1 }} colors={getGradientColors(imageColors)}>
       <ScrollView style={styles.overlayContainer} className="my-16">
@@ -209,8 +232,15 @@ const PlaylistScreen = () => {
             )}
             {/* 3dot menu */}
             <View className="flex flex-row gap-1 items-center   w-fit">
-              <Pressable className="hover:bg-hover-background w-fit rounded-full p-2">
-                <HeartIcon size={18} />
+              <Pressable
+                onPress={handleAddAlbumToPlaylist}
+                className="hover:bg-hover-background w-fit rounded-full p-2"
+              >
+                <HeartIcon
+                  size={18}
+                  fill={isAddedToPlaylist ? "green" : ""}
+                  color={isAddedToPlaylist ? "green" : "white"}
+                />
               </Pressable>
               <Pressable
                 onPress={handlePlay}

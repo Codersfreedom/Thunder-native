@@ -51,7 +51,7 @@ const SongCard = ({ song, isLoading }: { song: Song; isLoading: boolean }) => {
               type="subtitle"
               className="text-sm font-normal mb-2 text-typography-700"
             >
-              {song.artists.primary.map((artist) => artist.name).join(" ,")}
+              {song.artists.primary.map((artist) => artist.name).join(", ")}
             </ThemedText>
           )}
         </View>

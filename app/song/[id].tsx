@@ -21,9 +21,11 @@ import { Skeleton, SkeletonText } from "@/components/ui/skeleton";
 import AlbumItem from "@/components/album/AlbumItem";
 import { songToTrack } from "@/helpers/SongToTrack";
 import { Song } from "@/types";
+import useUserStore from "@/store/useUserStore";
 
 const SongScreen = () => {
   const { fetchSingle, isLoading, single } = useMusicStore();
+  const { favoriteSongs, addToFavorite } = useUserStore();
   const unknownTrackImageUri = require("../../assets/images/unknown_track.png");
   const { bottom } = useSafeAreaInsets();
   const { id }: { id: string } = useLocalSearchParams();
@@ -52,6 +54,31 @@ const SongScreen = () => {
     await TrackPlayer.add(tracks);
     await TrackPlayer.play();
   };
+
+  const handleAddToFavorite = () => {
+    if (!single) return;
+    addToFavorite(
+      single.artists.primary,
+      single.imageUrl,
+      single.audioUrl,
+      single.albumId,
+      single.artistId,
+      single.duration,
+      single.releaseYear,
+      single._id,
+      single.songId,
+      single.title,
+      "Favorites"
+    );
+  };
+
+  let isAlreadyfavorite: boolean = false;
+
+  favoriteSongs.map((song) => {
+    if (song?.songId == id) {
+      isAlreadyfavorite = true;
+    }
+  });
   return (
     <LinearGradient style={{ flex: 1 }} colors={getGradientColors(imageColors)}>
       <ScrollView style={styles.overlayContainer} className="my-16">
@@ -109,8 +136,15 @@ const SongScreen = () => {
             )}
             {/* 3dot menu */}
             <View className="flex flex-row gap-1 items-center   w-fit">
-              <Pressable className="hover:bg-hover-background w-fit rounded-full p-2">
-                <HeartIcon size={18} />
+              <Pressable
+                onPress={handleAddToFavorite}
+                className="hover:bg-hover-background w-fit rounded-full p-2"
+              >
+                <HeartIcon
+                  size={18}
+                  color={isAlreadyfavorite ? "green" : "white"}
+                  fill={isAlreadyfavorite ? "green" : ""}
+                />
               </Pressable>
               <Pressable
                 onPress={handlePlay}
