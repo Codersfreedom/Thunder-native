@@ -10,8 +10,10 @@ import { Divider } from "@/components/ui/divider";
 import { Heading } from "@/components/ui/heading";
 import { VStack } from "@/components/ui/vstack";
 import { ThemedText } from "../ThemedText";
+import useUserStore from "@/store/useUserStore";
 
 const ProfileCard = () => {
+  const { currentUser } = useUserStore();
   return (
     <Card
       variant="elevated"
@@ -23,15 +25,15 @@ const ProfileCard = () => {
           <AvatarFallbackText>JD</AvatarFallbackText>
           <AvatarImage
             source={{
-              uri: "https://gluestack.github.io/public-blog-video-assets/camera.png",
+              uri: `${currentUser?.image}`,
             }}
           />
         </Avatar>
         <VStack>
           <Heading size="md" className="mb-1">
-            Jane Doe
+            {currentUser?.name}
           </Heading>
-          <ThemedText type="default">janedoe@sample.com</ThemedText>
+          <ThemedText type="default">{currentUser?.email}</ThemedText>
         </VStack>
       </Box>
       <Box className="my-5 flex-row">
@@ -44,7 +46,7 @@ const ProfileCard = () => {
           className="w-[40%] self-center bg-background-300  hidden"
         />
         <VStack className="items-center flex-1 py-0 border-r border-outline-300">
-          <Heading size="xs">5,281</Heading>
+          <Heading size="xs">{currentUser?.followers}</Heading>
           <ThemedText type="defaultSemiBold">followers</ThemedText>
         </VStack>
         <Divider
@@ -52,7 +54,7 @@ const ProfileCard = () => {
           className="w-[40%] self-center bg-background-300 hidden"
         />
         <VStack className="items-center flex-1 pt-0">
-          <Heading size="xs">281</Heading>
+          <Heading size="xs">{currentUser?.following}</Heading>
           <ThemedText type="defaultSemiBold">following</ThemedText>
         </VStack>
       </Box>

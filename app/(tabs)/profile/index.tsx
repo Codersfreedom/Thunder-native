@@ -11,10 +11,14 @@ import {
 } from "lucide-react-native";
 import { ThemedText } from "@/components/ThemedText";
 import ThemeSheet from "@/components/profile/ThemeSheet";
+import useUserStore from "@/store/useUserStore";
+import useAuthStore from "@/store/useAuthStore";
 
 const index = () => {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
   const handleClose = () => setShowActionsheet(false);
+  const { currentUser } = useUserStore();
+  const { logout } = useAuthStore();
   return (
     <ScrollView className="flex-1 dark:bg-dark-background p-2">
       <VStack space="2xl" className="mt-16">
@@ -44,18 +48,23 @@ const index = () => {
           </Pressable>
 
           {/* Logout */}
-          <Pressable className="flex flex-1 flex-row justify-between items-center p-3 hover:bg-hover-background rounded-2xl ">
-            <View className="flex flex-row items-center gap-5 text-green-500">
-              <LogOutIcon />
-              <ThemedText
-                type="subtitle"
-                lightColor="#22c55e"
-                darkColor="#22c55e"
-              >
-                Log out
-              </ThemedText>
-            </View>
-          </Pressable>
+          {currentUser && (
+            <Pressable
+              onPress={() => logout()}
+              className="flex flex-1 flex-row justify-between items-center p-3 hover:bg-hover-background rounded-2xl "
+            >
+              <View className="flex flex-row items-center gap-5 text-green-500">
+                <LogOutIcon />
+                <ThemedText
+                  type="subtitle"
+                  lightColor="#22c55e"
+                  darkColor="#22c55e"
+                >
+                  Log out
+                </ThemedText>
+              </View>
+            </Pressable>
+          )}
         </VStack>
       </VStack>
       <ThemeSheet showActionsheet={showActionsheet} handleClose={handleClose} />

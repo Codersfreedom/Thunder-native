@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Thunder-native",
-    "slug": "Thunder-native",
+    "slug": "thunder",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -44,6 +44,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "c9a687a3-6475-4fa6-975d-a18a7687804e"
+      }
+    },
+    "owner": "dev.rakesh"
   }
 }
